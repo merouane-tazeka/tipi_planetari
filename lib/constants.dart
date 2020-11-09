@@ -2,22 +2,11 @@ import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
 
 //Dati per API immanuel
+const kImmanuelWebURL = 'https://cors-anywhere.herokuapp.com/https://api.immanuel.app/chart/natal';
 const kImmanuelURL = 'https://api.immanuel.app/chart/natal';
-const kImmanuelApiKey = 'SzQN82nJLOmFX7ASAuWxpYywTFVT55Ov';
-const kImmanuelSecret = 'rX9sgmysBLVj';
+const kImmanuelApiKey = 'vXTHt1gWPflycZl4FTU5PETH1oNpYiuR';
+const kImmanuelSecret = 'WnmifFRsO6ts';
 const kHouseSystem = 'Placidus';
-
-// //Massimo valore della dominante per i pianeti lenti
-// const kMaxSlowDominantValue = 60.0;
-//
-// //Massimo valore della dominante per i pianeti veloci
-// const kMaxFastDominantValue = 73.0;
-//
-// //Massimo valore della dominante per la luna
-// const kMaxMoonDominantValue = 50.0;
-//
-// //Massimo valore della dominante per il sole
-// const kMaxSunDominantValue = 39.0;
 
 // Ampiezza della congiunzione
 const kConjunction = 10;
@@ -84,9 +73,28 @@ const kStelliumInHouseOfExalt = 1; //esaltazione
 
 //Enumerazioni astrologiche
 enum Signs { Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces }
-enum PlanetName {sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto,}
-enum PlanetSpeed {slow, fast,}
-enum BirthChartAngles {asc, mc, desc, ic,}
+enum PlanetName {
+  sun,
+  moon,
+  mercury,
+  venus,
+  mars,
+  jupiter,
+  saturn,
+  uranus,
+  neptune,
+  pluto,
+}
+enum PlanetSpeed {
+  slow,
+  fast,
+}
+enum BirthChartAngles {
+  asc,
+  mc,
+  desc,
+  ic,
+}
 
 class Planet {
   Planet(this.name);
@@ -94,9 +102,11 @@ class Planet {
   bool isFast() {
     return kPlanetsFast.contains(name);
   }
+
   bool isSlow() {
     return kPlanetsSlow.contains(name);
   }
+
   String symbol() {
     return kSymbolsName[EnumToString.convertToString(name)];
   }

@@ -1,5 +1,6 @@
-import 'package:dominanti_planetarie/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'graphic/input_form.dart';
 
 void main() {
   // FlutterError.onError = (FlutterErrorDetails details) {
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: WelcomeScreen(),
+      // home: WelcomeScreen(),
+      home: InputForm(),
+      // home: BirthCityWidget(),
     );
   }
 }

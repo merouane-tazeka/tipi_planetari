@@ -1,10 +1,12 @@
 import 'package:dominanti_planetarie/constants.dart';
 import 'package:dominanti_planetarie/graphic/reusable_card.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
-import 'graphic_constants.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
+import 'graphic_constants.dart';
 
 class DominantTile extends StatelessWidget {
   DominantTile({@required this.planet, @required this.dominantValue, @required this.maxDominantValue});
@@ -21,21 +23,30 @@ class DominantTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReusableCard(
       colour: kTileBackgroundColor,
+      //TODO chiamare la descrizione del pianeta
+      // onPress: (),
       cardChild: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  child: SvgPicture.asset(
-                    planet.symbol(),
-                    color: kSignColor,
-                    matchTextDirection: true,
-                  ),
+                  // child: kIsWeb
+                  //     ? Image.network(
+                  //         planet.symbol(),
+                  //         color: kSignColor,
+                  //         fit: BoxFit.contain,
+                  //         matchTextDirection: true,
+                  //       )
+                  //     : SvgPicture.asset(
+                  //         planet.symbol(),
+                  //         color: kSignColor,
+                  //         matchTextDirection: true,
+                  //       ),
+                  child: WebsafeSvg.asset(planet.symbol(), color: kSignColor),
                 ),
                 Expanded(
                   child: Center(
@@ -51,7 +62,7 @@ class DominantTile extends StatelessWidget {
           Container(
             height: 50.0,
             padding: EdgeInsets.only(
-              top: 10,
+              // top: 10,
               bottom: 10,
             ),
             child: LiquidLinearProgressIndicator(

@@ -9,11 +9,9 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class DominantScreen extends StatefulWidget {
   static String id = 'dominant_screen';
-  // DominantScreen({@required this.birthChartData, @required this.dominantsData});
   DominantScreen({@required this.birthChartData});
   final birthChartData;
   var dominantsData;
-
   @override
   _DominantScreenState createState() => _DominantScreenState();
 }
@@ -26,22 +24,17 @@ class _DominantScreenState extends State<DominantScreen> {
   @override
   void initState() {
     super.initState();
-    updateUI(widget.birthChartData, widget.dominantsData);
+    updateUI(birthChartData: widget.birthChartData, dominantsData: widget.dominantsData);
   }
 
-  void updateUI(dynamic birthChartData, dynamic dominantsData) {
+  void updateUI({dynamic birthChartData, dynamic dominantsData}) {
     setState(() {
-      print('Viene chiamato updateUI');
+      // print('Viene chiamato updateUI');
       var dominantsData = dominants(birthChartData);
       _dominantsTotal = dominantsTotalValue(dominantsData);
-      // Map<kPlanetsNames, int> dominantsData = BirthChartDominants(birthChart: birthChartData).calculate();
       _dominantsPlanets = dominantsData.keys.toList();
       _dominantsValues = dominantsData.values.toList();
-      // _dominantsTotal = BirthChartDominants().overallValue(dominantsData: dominantsData);
-      print('Il valore totale delle dominanti è $_dominantsTotal');
-      // PlanetName.values.forEach((planet) {
-      //   print('La dominante di $planet è ${dominantsData[planet]}');
-      // });
+      // print('Il valore totale delle dominanti è $_dominantsTotal');
     });
   }
 
@@ -52,14 +45,16 @@ class _DominantScreenState extends State<DominantScreen> {
       child: Scaffold(
         backgroundColor: kPageBackgroundColor,
         appBar: AppBar(
-          title: Text('Your planets dominant data'),
+          title: Text('Il tuo tipo planetario'),
           centerTitle: true,
         ),
         body: StaggeredGridView.countBuilder(
           crossAxisCount: 4,
           itemCount: 10,
-          itemBuilder: (BuildContext context, int index) =>
-              DominantTile(planet: Planet(_dominantsPlanets[index]), dominantValue: _dominantsValues[index], maxDominantValue: _dominantsTotal),
+          itemBuilder: (BuildContext context, int index) => DominantTile(
+              planet: Planet(_dominantsPlanets[index]),
+              dominantValue: _dominantsValues[index],
+              maxDominantValue: _dominantsTotal),
           staggeredTileBuilder: (int index) => StaggeredTile.count(
               index == 0
                   ? 4
